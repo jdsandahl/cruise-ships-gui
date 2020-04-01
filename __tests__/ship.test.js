@@ -1,12 +1,17 @@
 const { Ship } = require("../src/index");
 const { Port } = require("../src/index");
+const { Itinerary } = require("../src/index");
 
 let ship;
 let port;
+let nextPort;
+let itinerary;
 
 beforeEach(() => {
   port = new Port("New York");
-  ship = new Ship(port);
+  nextPort = new Port("London");
+  itinerary = new Itinerary([port, nextPort]);
+  ship = new Ship(itinerary);
 });
 
 describe("Ship", () => {
@@ -20,16 +25,16 @@ describe("Ship", () => {
 
   it("can set sail", () => {
     ship.setSail();
-
+  
     expect(ship.currentPort).toBeFalsy();
+    //expect(ship.previousPort).toBe(port);
   });
 
   it("can dock at a new Port", () => {
-    const newPort = new Port("London");
+    ship.setSail();
+    ship.dock();
 
-    ship.dock(newPort);
-
-    expect(ship.currentPort).toBe(newPort);
+    expect(ship.currentPort).toBe(nextPort);
   });
 
   it("has a previous port which is null to start", () => {
