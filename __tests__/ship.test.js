@@ -25,7 +25,7 @@ describe("Ship", () => {
 
   it("can set sail, currentPort becomes the new previousPort and then currentPort becomes falsy", () => {
     ship.setSail();
-  
+
     expect(ship.currentPort).toBeFalsy();
     expect(ship.previousPort).toBe(port);
   });
@@ -39,5 +39,12 @@ describe("Ship", () => {
 
   it("has a previous port which is null to start", () => {
     expect(ship.previousPort).toBe(null);
+  });
+
+  it("can't sail further than its itinerary", () => {
+    ship.setSail();
+    ship.dock();
+
+    expect(() => ship.setSail()).toThrowError("Last stop on the itinerary reached");
   });
 });

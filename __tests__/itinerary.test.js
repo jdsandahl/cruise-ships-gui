@@ -5,8 +5,8 @@ let itinerary;
 let portOne, portTwo;
 
 beforeEach(() => {
-    portOne = new Port("London");
-    portTwo = new Port("New York");
+  portOne = new Port("London");
+  portTwo = new Port("New York");
 
   itinerary = new Itinerary([portOne, portTwo]);
 });
