@@ -1,5 +1,5 @@
-const Ship = require("../src/ship");
-const Port = require("../src/port");
+const { Ship } = require("../src/index");
+const { Port } = require("../src/index");
 
 let ship;
 let port;
@@ -10,11 +10,11 @@ beforeEach(() => {
 });
 
 describe("Ship", () => {
-  it("creates and object instances", () => {
+  it("creates an object instances", () => {
     expect(ship).toBeInstanceOf(Object);
   });
 
-  it("creates and object instances", () => {
+  it("creates an object instances with a port", () => {
     expect(ship.currentPort).toBe(port);
   });
 

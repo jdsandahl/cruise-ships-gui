@@ -1,4 +1,4 @@
-const Port = require("../src/port");
+const { Port } = require("../src/index");
 
 describe("Port", () => {
   it("has a name property", () => {
