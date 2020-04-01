@@ -15,7 +15,7 @@ describe("Ship", () => {
   });
 
   it("creates and object instances", () => {
-    expect(ship.currentPort).toBe("New York");
+    expect(ship.currentPort).toBe(port);
   });
 
   it("can set sail", () => {
@@ -26,11 +26,11 @@ describe("Ship", () => {
 
   it("can dock at a port after setting sail", () => {
     const newPort = new Port("London");
-    
+
     ship.setSail();
-    
+
     ship.dock(newPort);
 
-    expect(ship.currentPort).toBe("London");
+    expect(ship.currentPort).toBe(newPort);
   });
 });
