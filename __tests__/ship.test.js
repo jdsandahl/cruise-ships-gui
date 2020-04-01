@@ -23,11 +23,11 @@ describe("Ship", () => {
     expect(ship.currentPort).toBe(port);
   });
 
-  it("can set sail", () => {
+  it("can set sail, currentPort becomes the new previousPort and then currentPort becomes falsy", () => {
     ship.setSail();
   
     expect(ship.currentPort).toBeFalsy();
-    //expect(ship.previousPort).toBe(port);
+    expect(ship.previousPort).toBe(port);
   });
 
   it("can dock at a new Port", () => {
@@ -39,12 +39,5 @@ describe("Ship", () => {
 
   it("has a previous port which is null to start", () => {
     expect(ship.previousPort).toBe(null);
-  });
-
-  it("after setting sail, the currentPort becomes the previousPort", () => {
-    let leavingPort = ship.currentPort;
-    ship.setSail();
-
-    expect(ship.previousPort).toBe(leavingPort);
   });
 });
