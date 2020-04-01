@@ -4,7 +4,7 @@
   "description": "cruise-ship project",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose"
+    "test": "jest --coverage --verbose"
   },
   "author": "",
   "license": "ISC",

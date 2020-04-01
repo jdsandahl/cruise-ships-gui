@@ -24,13 +24,22 @@ describe("Ship", () => {
     expect(ship.currentPort).toBeFalsy();
   });
 
-  it("can dock at a port after setting sail", () => {
+  it("can dock at a new Port", () => {
     const newPort = new Port("London");
-
-    ship.setSail();
 
     ship.dock(newPort);
 
     expect(ship.currentPort).toBe(newPort);
+  });
+
+  it("has a previous port which is null to start", () => {
+    expect(ship.previousPort).toBe(null);
+  });
+
+  it("after setting sail, the currentPort becomes the previousPort", () => {
+    let leavingPort = ship.currentPort;
+    ship.setSail();
+
+    expect(ship.previousPort).toBe(leavingPort);
   });
 });
