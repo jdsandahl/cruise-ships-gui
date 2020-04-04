@@ -31,13 +31,23 @@ describe("Port", () => {
 
       expect(port.ships).toEqual([blackPerl]);
     });
+
+    it("can't remove ships that aren't at the Port", () => {
+      port.ships = [blackPerl,oldDutch];
+
+      port.removeShip(oldDutch);
+
+      expect(() => port.removeShip(oldDutch)).toThrowError(
+        "Can't remove, this ship isn't docked at the Port!"
+      );
+    });
   });
 
   describe("without a name provided", () => {
     it("has a default name", () => {
-        let port = new Port();
+      let port = new Port();
 
-        expect(port.name).not.toEqual(null);
+      expect(port.name).not.toEqual(null);
     });
   });
 });

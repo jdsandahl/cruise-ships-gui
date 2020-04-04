@@ -13,6 +13,8 @@ class Port {
 
     if (index > -1) {
       this.ships.splice(index, 1);
+    } else {
+        throw new Error("Can't remove, this ship isn't docked at the Port!")
     }
   }
 }
