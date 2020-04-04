@@ -3,6 +3,8 @@ const { Port } = require("../src/index");
 describe("Port", () => {
   describe("with a port name", () => {
     let port;
+    const blackPerl = jest.fn();
+    const oldDutch = jest.fn();
 
     beforeEach(() => {
       port = new Port("New York");
@@ -17,17 +19,17 @@ describe("Port", () => {
     });
 
     it("can add a ship to the Port", () => {
-      port.addShip("Black Perl");
+      port.addShip(blackPerl);
 
-      expect(port.ships).toEqual(["Black Perl"]);
+      expect(port.ships).toEqual([blackPerl]);
     });
 
     it("can remove a ship from the Port", () => {
-      port.ships = ["Black Perl", "Old Dutch", "The Clipper"];
+      port.ships = [blackPerl, oldDutch];
 
-      port.removeShip("Old Dutch");
+      port.removeShip(oldDutch);
 
-      expect(port.ships).toEqual(["Black Perl", "The Clipper"]);
+      expect(port.ships).toEqual([blackPerl]);
     });
   });
 });

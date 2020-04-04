@@ -4,12 +4,10 @@ const { Port } = require("../src/index");
 describe("Itinerary", () => {
   describe("with a list of ports", () => {
     let itinerary;
-    let portOne, portTwo;
+    const portOne = jest.fn();
+    const portTwo = jest.fn();
 
     beforeEach(() => {
-      portOne = new Port("London");
-      portTwo = new Port("New York");
-
       itinerary = new Itinerary([portOne, portTwo]);
     });
 
