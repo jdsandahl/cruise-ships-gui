@@ -9,8 +9,8 @@ class Ship {
     const itinerary = this.itinerary;
     const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
 
-    if (currentPortIndex === (itinerary.ports.length - 1)) {
-      throw new Error("Last stop on the itinerary reached")
+    if (currentPortIndex === itinerary.ports.length - 1) {
+      throw new Error("Last stop on the itinerary reached");
     }
 
     this.previousPort = this.currentPort;

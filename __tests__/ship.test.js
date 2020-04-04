@@ -45,6 +45,8 @@ describe("Ship", () => {
     ship.setSail();
     ship.dock();
 
-    expect(() => ship.setSail()).toThrowError("Last stop on the itinerary reached");
+    expect(() => ship.setSail()).toThrowError(
+      "Last stop on the itinerary reached"
+    );
   });
 });
