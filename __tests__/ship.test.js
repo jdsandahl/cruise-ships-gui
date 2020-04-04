@@ -5,7 +5,6 @@ const { Itinerary } = require("../src/index");
 describe("Ship", () => {
   describe("with ports and an itinerary", () => {
     let ship;
-    let itinerary;
 
     beforeEach(() => {
       const portMethods = {
@@ -25,7 +24,10 @@ describe("Ship", () => {
         ships: []
       };
 
-      itinerary = new Itinerary([port, nextPort]);
+      itinerary = {
+        ports: [port, nextPort]
+      };
+
       ship = new Ship("The Baracuda", itinerary);
     });
 

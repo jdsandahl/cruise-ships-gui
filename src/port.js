@@ -1,5 +1,5 @@
 class Port {
-  constructor(portName = "London") {
+  constructor(portName = "Dead Island") {
     this.name = portName;
     this.ships = [];
   }
