@@ -33,7 +33,7 @@ describe("Port", () => {
     });
 
     it("can't remove ships that aren't at the Port", () => {
-      port.ships = [blackPerl,oldDutch];
+      port.ships = [blackPerl, oldDutch];
 
       port.removeShip(oldDutch);
 

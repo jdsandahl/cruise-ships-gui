@@ -9,7 +9,7 @@ describe("Ship", () => {
     beforeEach(() => {
       const portMethods = {
         removeShip: jest.fn(),
-        addShip: jest.fn(),
+        addShip: jest.fn()
       };
 
       port = {
@@ -79,9 +79,9 @@ describe("Ship", () => {
 
   describe("with out a name provided", () => {
     it("has a default name", () => {
-        let ship = new Ship(itinerary);
-        
-        expect(ship.name).not.toEqual(null);
+      let ship = new Ship(itinerary);
+
+      expect(ship.name).not.toEqual(null);
     });
   });
 });
