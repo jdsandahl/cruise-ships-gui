@@ -5,13 +5,26 @@ const { Itinerary } = require("../src/index");
 describe("Ship", () => {
   describe("with ports and an itinerary", () => {
     let ship;
-    let port;
-    let nextPort;
     let itinerary;
 
     beforeEach(() => {
-      port = new Port("New York");
-      nextPort = new Port("London");
+      const portMethods = {
+        removeShip: jest.fn(),
+        addShip: jest.fn(),
+      };
+
+      port = {
+        ...portMethods,
+        name: "New York",
+        ships: []
+      };
+
+      nextPort = {
+        ...portMethods,
+        name: "London",
+        ships: []
+      };
+
       itinerary = new Itinerary([port, nextPort]);
       ship = new Ship("The Baracuda", itinerary);
     });
@@ -29,7 +42,7 @@ describe("Ship", () => {
     });
 
     it("gets added to port on instantiation", () => {
-      expect(port.ships).toContain(ship);
+      expect(port.addShip).toHaveBeenCalledWith(ship);
     });
 
     it("can set sail, currentPort becomes the new previousPort and then currentPort becomes falsy", () => {
@@ -37,7 +50,7 @@ describe("Ship", () => {
 
       expect(ship.currentPort).toBeFalsy();
       expect(ship.previousPort).toBe(port);
-      expect(port.ships).not.toContain(ship);
+      expect(port.removeShip).toHaveBeenCalledWith(ship);
     });
 
     it("can dock at a new Port", () => {
@@ -45,7 +58,7 @@ describe("Ship", () => {
       ship.dock();
 
       expect(ship.currentPort).toBe(nextPort);
-      expect(nextPort.ships).toContain(ship);
+      expect(nextPort.addShip).toHaveBeenCalledWith(ship);
     });
 
     it("has a previous port which is null to start", () => {
