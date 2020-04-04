@@ -32,4 +32,12 @@ describe("Port", () => {
       expect(port.ships).toEqual([blackPerl]);
     });
   });
+
+  describe("without a name provided", () => {
+    it("has a default name", () => {
+        let port = new Port();
+
+        expect(port.name).not.toEqual(null);
+    });
+  });
 });

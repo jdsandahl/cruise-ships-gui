@@ -28,7 +28,7 @@ describe("Ship", () => {
         ports: [port, nextPort]
       };
 
-      ship = new Ship("The Baracuda", itinerary);
+      ship = new Ship(itinerary, "The Baracuda");
     });
 
     it("creates an object instances", () => {
@@ -74,6 +74,14 @@ describe("Ship", () => {
       expect(() => ship.setSail()).toThrowError(
         "Last stop on the itinerary reached"
       );
+    });
+  });
+
+  describe("with out a name provided", () => {
+    it("has a default name", () => {
+        let ship = new Ship(itinerary);
+        
+        expect(ship.name).not.toEqual(null);
     });
   });
 });

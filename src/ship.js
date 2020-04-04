@@ -1,5 +1,5 @@
 class Ship {
-  constructor(name = "Ghost Ship", itinerary) {
+  constructor(itinerary, name = "Ghost Ship") {
     this.name = name;
     this.itinerary = itinerary;
     this.currentPort = itinerary.ports[0];
