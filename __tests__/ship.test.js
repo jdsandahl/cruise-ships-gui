@@ -11,7 +11,7 @@ beforeEach(() => {
   port = new Port("New York");
   nextPort = new Port("London");
   itinerary = new Itinerary([port, nextPort]);
-  ship = new Ship(itinerary);
+  ship = new Ship("The Baracuda", itinerary);
 });
 
 describe("Ship", () => {
@@ -19,8 +19,16 @@ describe("Ship", () => {
     expect(ship).toBeInstanceOf(Object);
   });
 
+  it("has a name", () => {
+    expect(ship.name).toBe("The Baracuda");
+  });
+
   it("creates an object instances with a port", () => {
     expect(ship.currentPort).toBe(port);
+  });
+
+  it("gets added to port on instantiation", () => {
+    expect(port.ships).toContain(ship);
   });
 
   it("can set sail, currentPort becomes the new previousPort and then currentPort becomes falsy", () => {
@@ -28,6 +36,7 @@ describe("Ship", () => {
 
     expect(ship.currentPort).toBeFalsy();
     expect(ship.previousPort).toBe(port);
+    expect(port.ships).not.toContain(ship);
   });
 
   it("can dock at a new Port", () => {
@@ -35,6 +44,7 @@ describe("Ship", () => {
     ship.dock();
 
     expect(ship.currentPort).toBe(nextPort);
+    expect(nextPort.ships).toContain(ship);
   });
 
   it("has a previous port which is null to start", () => {
