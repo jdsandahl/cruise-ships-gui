@@ -1,5 +1,4 @@
 const { Itinerary } = require("../src/index");
-const { Port } = require("../src/index");
 
 describe("Itinerary", () => {
   describe("with a list of ports", () => {
