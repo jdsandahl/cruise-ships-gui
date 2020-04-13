@@ -80,3 +80,38 @@ body {
 #hud > div {
   margin-bottom: 10px;
 }
+
+#formContainer {
+  background-color: white;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  margin: 2px;
+}
+
+.inner-form{
+  padding: 5px;
+  margin: 5px;
+  justify-content: space-around;
+  align-self: flex-start;
+  max-width: 180px;
+}
+
+#submitPortBtn{
+  border: 0;
+  background-color: #fb3640;
+  border-bottom: 4px solid #d8040f;
+  color: white;
+}
+
+#submitPortBtn:active{
+  background-color: #d8040f;
+}
+
