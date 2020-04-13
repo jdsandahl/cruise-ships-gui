@@ -16,9 +16,9 @@
         throw new Error("Last stop on the itinerary reached");
       }
 
+      this.currentPort.removeShip(this);
       this.previousPort = this.currentPort;
-      this.previousPort.removeShip(this);
-
+  
       this.currentPort = null;
     }
 
