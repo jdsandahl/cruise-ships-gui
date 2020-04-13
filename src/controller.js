@@ -35,6 +35,14 @@
 
       });
     },
+
+    renderShip(ship){
+      const shipPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+      const portElement = document.querySelector(`[data-port-index='${shipPortIndex}']`);
+      const shipElement = document.querySelector('#ship');
+      shipElement.style.top = `${portElement.offsetTop + 20}px`;
+      shipElement.style.left = `${portElement.offsetLeft - 32}px`;
+    },
   };
 
   if (typeof module !== "undefined" && module.exports) {
