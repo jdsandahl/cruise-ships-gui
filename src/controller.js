@@ -115,6 +115,25 @@
 
       nextPortElement.textContent = `Next Port: ${nextPortName}`;
     },
+
+    addPort(itinerary) {
+      const newForm = document.getElementById("form");
+
+      const submitClicked = document.getElementById("submitPortBtn");
+
+      submitClicked.addEventListener("click", () => {
+        const newPortName = document.getElementById("name").value;
+        const portToAdd = new Port(newPortName);
+
+        if (newPortName === "") {
+          alert("You must name the Port to be added!");
+          return false;
+        } else {
+          itinerary.ports.push(portToAdd);
+          newForm.submit();
+        }
+      });
+    },
   };
 
   if (typeof module !== "undefined" && module.exports) {

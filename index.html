@@ -13,9 +13,15 @@
   </head>
   <body>
     <div id="formContainer">
-      <form>
+      <form id="form" action="#">
         <label for="add-port" class="inner-form">Add Port</label>
-        <input type="text" id="name" name="port-name" class="inner-form" placeholder="Port Name"/>
+        <input
+          type="text"
+          id="name"
+          name="port-name"
+          class="inner-form"
+          placeholder="Port Name"
+        />
         <button id="submitPortBtn" class="inner-form">Add</button>
       </form>
     </div>
@@ -54,6 +60,7 @@
 
       controller.renderPorts(itinerary.ports);
       controller.renderShip();
+      controller.addPort(itinerary);
     </script>
   </body>
 </html>
