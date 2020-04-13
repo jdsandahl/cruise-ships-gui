@@ -6,7 +6,10 @@
     <title>Cruise Ships</title>
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="viewport">
@@ -15,6 +18,14 @@
       <button id="sailbutton">Set Sail!</button>
     </div>
 
+    <div id="hud">
+      <div>
+        <span id="current-port"></span>
+      </div>
+      <div>
+        <span id="next-port"></span>
+      </div>
+    </div>
 
     <script src="src/controller.js"></script>
     <script src="src/ship.js"></script>
@@ -23,13 +34,13 @@
 
     <script>
       const itinerary = new Itinerary([
-        new Port('New York City'),
-        new Port('London'),
-        new Port('Nova Scotia'),
-        new Port('Sydney')
+        new Port("New York City"),
+        new Port("London"),
+        new Port("Nova Scotia"),
+        new Port("Sydney"),
       ]);
 
-      const ship = new Ship(itinerary,"Titanic");
+      const ship = new Ship(itinerary, "Titanic");
 
       const controller = new Controller(ship);
 

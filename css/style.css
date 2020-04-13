@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   height: 100%;
   font-family: "Press Start 2P", cursive;
 }
@@ -16,8 +15,8 @@ body {
   width: 640px;
   height: 256px;
   position: relative;
+  background-image: url('../images/water0.png');
   overflow-x: auto;
-  background-image: url("../images/water0.png;");
 }
 
 #ports {
@@ -67,4 +66,17 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+#hud {
+  background-color: black;
+  color: white;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  text-align: right;
+}
+
+#hud > div {
+  margin-bottom: 10px;
 }

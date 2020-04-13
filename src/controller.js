@@ -3,7 +3,7 @@
     this.ship = ship;
 
     this.initialiseSea();
-
+    this.refreshHUD();
     document.querySelector("#sailbutton").addEventListener("click", () => {
       this.setSail();
     });
@@ -64,18 +64,21 @@
       );
 
       if (!nextPortElement) {
-          return this.renderMessage(`${ship.currentPort.name} is the last stop, time to get off!`);
+        return this.renderMessage(
+          `${ship.currentPort.name} is the last stop, time to get off!`
+        );
       }
 
       this.renderMessage(`Now departing ${ship.currentPort.name}`);
       ship.setSail();
-      
+
       const shipElement = document.querySelector("#ship");
       const sailInterval = setInterval(() => {
         const shipLeft = parseInt(shipElement.style.left, 10);
         if (shipLeft === nextPortElement.offsetLeft - 32) {
           ship.dock();
           this.renderMessage(`Now arriving at ${ship.currentPort.name}`);
+          this.refreshHUD();
           clearInterval(sailInterval);
         }
         shipElement.style.left = `${shipLeft + 1}px`;
@@ -83,16 +86,34 @@
     },
 
     renderMessage(message) {
-      const messageElement = document.createElement('div');
-      messageElement.id = 'message';
+      const messageElement = document.createElement("div");
+      messageElement.id = "message";
       messageElement.innerHTML = message;
 
-      const viewport = document.querySelector('#viewport');
+      const viewport = document.querySelector("#viewport");
       viewport.appendChild(messageElement);
 
       setTimeout(() => {
         viewport.removeChild(messageElement);
       }, 2000);
+    },
+
+    refreshHUD() {
+      const ship = this.ship;
+
+      const currentPortElement = document.getElementById("current-port");
+      currentPortElement.textContent = `Current Port: ${ship.currentPort.name}`;
+
+      const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+      const nextPortIndex = currentPortIndex + 1;
+
+      const nextPortElement = document.getElementById("next-port");
+
+      const nextPortName = ship.itinerary.ports[nextPortIndex]
+        ? ship.itinerary.ports[nextPortIndex].name
+        : "End of Travel";
+
+      nextPortElement.textContent = `Next Port: ${nextPortName}`;
     },
   };
 
