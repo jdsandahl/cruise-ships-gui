@@ -58,3 +58,13 @@ body {
   border-bottom-width: 0;
   padding-top: 14px;
 }
+
+#message {
+  background-color: white;
+  border-top: 3px solid black;
+  color: black;
+  padding: 16px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

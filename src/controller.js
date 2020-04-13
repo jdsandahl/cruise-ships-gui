@@ -64,20 +64,35 @@
       );
 
       if (!nextPortElement) {
-          return alert("End of the line!");
+          return this.renderMessage(`${ship.currentPort.name} is the last stop, time to get off!`);
       }
 
+      this.renderMessage(`Now departing ${ship.currentPort.name}`);
       ship.setSail();
-
+      
       const shipElement = document.querySelector("#ship");
       const sailInterval = setInterval(() => {
         const shipLeft = parseInt(shipElement.style.left, 10);
         if (shipLeft === nextPortElement.offsetLeft - 32) {
           ship.dock();
+          this.renderMessage(`Now arriving at ${ship.currentPort.name}`);
           clearInterval(sailInterval);
         }
         shipElement.style.left = `${shipLeft + 1}px`;
       }, 20);
+    },
+
+    renderMessage(message) {
+      const messageElement = document.createElement('div');
+      messageElement.id = 'message';
+      messageElement.innerHTML = message;
+
+      const viewport = document.querySelector('#viewport');
+      viewport.appendChild(messageElement);
+
+      setTimeout(() => {
+        viewport.removeChild(messageElement);
+      }, 2000);
     },
   };
 
