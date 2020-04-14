@@ -4,8 +4,13 @@
 
     this.initialiseSea();
     this.refreshHUD();
+
     document.querySelector("#sailbutton").addEventListener("click", () => {
       this.setSail();
+    });
+
+    document.querySelector("#addPortButton").addEventListener("click", () => {
+      this.addPort();
     });
   }
 
@@ -116,23 +121,33 @@
       nextPortElement.textContent = `Next Port: ${nextPortName}`;
     },
 
-    addPort(itinerary) {
-      const newForm = document.getElementById("form");
+    addPort() {
+      const ship = this.ship;
 
-      const submitClicked = document.getElementById("submitPortBtn");
+      const newPortName = document.getElementById("port-name").value;
+      console.log(newPortName); //<empty string> || 'testName'
 
-      submitClicked.addEventListener("click", () => {
-        const newPortName = document.getElementById("name").value;
-        const portToAdd = new Port(newPortName);
+      if (newPortName == "") {
+        //alert("You must name the Port to be added!");
+        return this.renderMessage("You must name the Port to be added!");
+      }
 
-        if (newPortName === "") {
-          alert("You must name the Port to be added!");
-          return false;
-        } else {
-          itinerary.ports.push(portToAdd);
-          newForm.submit();
-        }
-      });
+      const portToAdd = new Port(newPortName);
+      console.log(portToAdd); //Obeject {name:<testName> , ships: []}
+
+      //const additionalPortIndex = ship.itinerary.ports.length; 
+      /*
+      tried using the index to render single ports
+      while this did render each next port, 
+      the ship wouldn't travel to the next port
+      */
+
+      return (
+        this.ship.itinerary.ports.push(portToAdd),
+        this.renderPorts(ship.itinerary.ports),
+        this.refreshHUD(),
+        this.renderShip()
+      );
     },
   };
 
