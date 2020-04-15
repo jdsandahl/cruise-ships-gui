@@ -166,6 +166,8 @@
       const additionalPortIndex = ship.itinerary.ports.indexOf(portToAdd);
       console.log(additionalPortIndex); // 1
 
+      document.getElementById("port-name").value = "";
+      
       return (
         this.renderPorts(ship.itinerary.ports),
         this.refreshHUD(),
