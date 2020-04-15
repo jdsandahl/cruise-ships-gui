@@ -126,20 +126,27 @@
 
       const newPortName = document.getElementById("port-name").value;
       console.log(newPortName); //<empty string> || 'testName'
-
+      
       if (newPortName == "") {
         return this.renderMessage("You must name the Port to be added!");
       }
 
       const portToAdd = new Port(newPortName);
       console.log(portToAdd); //Obeject {name:<testName> , ships: []}
+      
+      ship.itinerary.ports.push(portToAdd);
+      console.log(ship.itinerary); //Object { ports: (2) […] }
 
-      const additionalPortIndex = ship.itinerary.ports.length; 
-      console.log(additionalPortIndex);
+      const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+      console.log(currentPortIndex); // 0
 
-      ship.itinerary.ports.push(portToAdd)
+      const additionalPortIndex = ship.itinerary.ports.indexOf(portToAdd); 
+      console.log(additionalPortIndex); // 1
+
+      /*
       const portToRender = ship.itinerary.ports.slice(additionalPortIndex);
-      console.log(ship.itinerary);
+      console.log(ship.itinerary.ports.length); // 2
+      console.log(ship.itinerary); 
       console.log(portToRender);
       /*
       tried using the index to render single ports
@@ -148,7 +155,7 @@
       */
 
       return (
-        this.renderPorts(portToRender),
+        this.renderPorts(ship.itinerary.ports),
         this.refreshHUD(),
         this.renderShip()
       );
