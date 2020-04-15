@@ -33,6 +33,15 @@
       const portsElement = document.querySelector("#ports");
       portsElement.style.width = "0px";
 
+      /*if(ports) {
+        //ports.forEach(port => {
+          let element = document.getElementsByClassName('port');
+          console.log(element);
+          element.parentNode.removeChild(element);
+        //});
+      }*/
+
+
       ports.forEach((port, index) => {
         const newPortElement = document.createElement("div");
         newPortElement.dataset.portName = port.name;
@@ -48,7 +57,7 @@
 
     renderShip() {
       const ship = this.ship;
-
+      if (ship.currentPort){ //truthy falsy check same as !== undefined
       const shipPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
       const portElement = document.querySelector(
         `[data-port-index='${shipPortIndex}']`
@@ -57,11 +66,13 @@
       const shipElement = document.querySelector("#ship");
       shipElement.style.top = `${portElement.offsetTop + 20}px`;
       shipElement.style.left = `${portElement.offsetLeft - 32}px`;
+      }
     },
 
     setSail() {
       const ship = this.ship;
 
+      if (ship.currentPort){
       const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
       const nextPortIndex = currentPortIndex + 1;
       const nextPortElement = document.querySelector(
@@ -88,6 +99,9 @@
         }
         shipElement.style.left = `${shipLeft + 1}px`;
       }, 20);
+    } else {
+      return this.renderMessage('A port needs to be added first!');
+    }
     },
 
     renderMessage(message) {
@@ -107,7 +121,10 @@
       const ship = this.ship;
 
       const currentPortElement = document.getElementById("current-port");
-      currentPortElement.textContent = `Current Port: ${ship.currentPort.name}`;
+
+      if (ship.currentPort !== undefined){
+        currentPortElement.textContent = `Current Port: ${ship.currentPort.name}`;
+      }
 
       const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
       const nextPortIndex = currentPortIndex + 1;
@@ -127,13 +144,18 @@
       const newPortName = document.getElementById("port-name").value;
       console.log(newPortName); //<empty string> || 'testName'
       
-      if (newPortName == "") {
+      if (newPortName === "") {
         return this.renderMessage("You must name the Port to be added!");
       }
 
       const portToAdd = new Port(newPortName);
       console.log(portToAdd); //Obeject {name:<testName> , ships: []}
       
+      if(!ship.currentPort){
+        ship.currentPort = portToAdd;
+        portToAdd.ships.push(ship);
+      }
+
       ship.itinerary.ports.push(portToAdd);
       console.log(ship.itinerary); //Object { ports: (2) […] }
 
@@ -143,8 +165,8 @@
       const additionalPortIndex = ship.itinerary.ports.indexOf(portToAdd); 
       console.log(additionalPortIndex); // 1
 
-      /*
-      const portToRender = ship.itinerary.ports.slice(additionalPortIndex);
+      
+      /*const portToRender = ship.itinerary.ports.slice(additionalPortIndex);
       console.log(ship.itinerary.ports.length); // 2
       console.log(ship.itinerary); 
       console.log(portToRender);
