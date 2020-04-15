@@ -1,7 +1,7 @@
 (function exportController() {
   function Controller(ship) {
     this.ship = ship;
-
+    
     this.initialiseSea();
     this.refreshHUD();
 
@@ -128,14 +128,19 @@
       console.log(newPortName); //<empty string> || 'testName'
 
       if (newPortName == "") {
-        //alert("You must name the Port to be added!");
         return this.renderMessage("You must name the Port to be added!");
       }
 
       const portToAdd = new Port(newPortName);
       console.log(portToAdd); //Obeject {name:<testName> , ships: []}
 
-      //const additionalPortIndex = ship.itinerary.ports.length; 
+      const additionalPortIndex = ship.itinerary.ports.length; 
+      console.log(additionalPortIndex);
+
+      ship.itinerary.ports.push(portToAdd)
+      const portToRender = ship.itinerary.ports.slice(additionalPortIndex);
+      console.log(ship.itinerary);
+      console.log(portToRender);
       /*
       tried using the index to render single ports
       while this did render each next port, 
@@ -143,8 +148,7 @@
       */
 
       return (
-        this.ship.itinerary.ports.push(portToAdd),
-        this.renderPorts(ship.itinerary.ports),
+        this.renderPorts(portToRender),
         this.refreshHUD(),
         this.renderShip()
       );

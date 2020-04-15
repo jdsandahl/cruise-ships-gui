@@ -48,7 +48,7 @@
 
     <script>
       const itinerary = new Itinerary([
-        new Port("New York City"), //currently causes an error if ititerary is empty
+       new Port("New York City"), //currently causes an error if ititerary is empty
         //new Port("London"),
         //new Port("Nova Scotia"),
         //new Port("Sydney"),
@@ -63,8 +63,8 @@
       Have left here commented out for testing 
       purposes */
 
-      //controller.renderPorts(ship.itinerary.ports);
-      //controller.renderShip();
+      controller.renderPorts(itinerary.ports);
+      controller.renderShip();
       //controller.addPort();
     </script>
   </body>
