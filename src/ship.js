@@ -6,9 +6,9 @@
       this.currentPort = itinerary.ports[0];
       this.previousPort = null;
 
-      if (this.currentPort !== undefined){
+      if (this.currentPort) { //same as !== undefined
         this.currentPort.addShip(this);
-      };
+      }
     }
 
     setSail() {
@@ -21,7 +21,7 @@
 
       this.currentPort.removeShip(this);
       this.previousPort = this.currentPort;
-  
+
       this.currentPort = null;
     }
 

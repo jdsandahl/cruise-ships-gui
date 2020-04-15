@@ -48,24 +48,23 @@
 
     <script>
       const itinerary = new Itinerary([
-       //new Port("New York City"), //currently causes an error if ititerary is empty
-       //new Port("London"),
-       //new Port("Nova Scotia"),
-       //new Port("Sydney"),
+        //new Port("New York City"), //currently causes an error if ititerary is empty
+        //new Port("London"),
+        //new Port("Nova Scotia"),
+        //new Port("Sydney"),
       ]);
 
       const ship = new Ship(itinerary, "Titanic");
 
       const controller = new Controller(ship);
 
-      /* Unsure if any of the below controller methods
-      should be called here. 
-      Have left here commented out for testing 
-      purposes */
+      /* The below controller methods
+      should be called if pre-populating the itinerary 
+      with port objects. 
+      Uncomment to use */
 
       //controller.renderPorts(ship.itinerary.ports);
       //controller.renderShip();
-      //controller.addPort();
     </script>
   </body>
 </html>
