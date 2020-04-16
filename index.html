@@ -13,17 +13,17 @@
   </head>
   <body>
     <div id="formContainer">
-      <form id="form" action="#">
+      <div id="userInput">
         <label for="add-port" class="inner-form">Add Port</label>
         <input
           type="text"
-          id="name"
+          id="port-name"
           name="port-name"
           class="inner-form"
           placeholder="Port Name"
         />
-        <button id="submitPortBtn" class="inner-form">Add</button>
-      </form>
+        <button id="addPortButton" class="inner-form">Add</button>
+      </div>
     </div>
 
     <div id="viewport">
@@ -48,19 +48,23 @@
 
     <script>
       const itinerary = new Itinerary([
-        new Port("New York City"),
-        new Port("London"),
-        new Port("Nova Scotia"),
-        new Port("Sydney"),
+        //new Port("New York City"), //currently causes an error if ititerary is empty
+        //new Port("London"),
+        //new Port("Nova Scotia"),
+        //new Port("Sydney"),
       ]);
 
       const ship = new Ship(itinerary, "Titanic");
 
       const controller = new Controller(ship);
 
-      controller.renderPorts(itinerary.ports);
-      controller.renderShip();
-      controller.addPort(itinerary);
+      /* The below controller methods
+      should be called if pre-populating the itinerary 
+      with port objects. 
+      Uncomment to use */
+
+      //controller.renderPorts(ship.itinerary.ports);
+      //controller.renderShip();
     </script>
   </body>
 </html>

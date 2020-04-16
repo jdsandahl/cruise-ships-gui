@@ -88,7 +88,7 @@ body {
   left: 16px;
 }
 
-#form {
+#userInput {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,14 +104,14 @@ body {
   max-width: 180px;
 }
 
-#submitPortBtn{
+#addPortButton{
   border: 0;
   background-color: #fb3640;
   border-bottom: 4px solid #d8040f;
   color: white;
 }
 
-#submitPortBtn:active{
+#addPortButton:active{
   background-color: #d8040f;
 }
 
